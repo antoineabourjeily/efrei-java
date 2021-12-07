@@ -15,7 +15,7 @@ public class DbConnection {
 
 		try {
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/lms?user=root&password=password&allowPublicKeyRetrieval=true&useSSL=false");
+					"jdbc:mysql://localhost/lms?user=lms_user&password=lms_password&allowPublicKeyRetrieval=true&useSSL=false");
 			System.out.println("Connection successful");
 
 		} catch (SQLException e) {
