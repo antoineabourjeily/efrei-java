@@ -7,6 +7,10 @@ public class Circle implements IShape2D {
 	Point center;
 	int radius;
 
+	public Circle(int x, int y, int radius) {
+		this(new Point(x, y), radius);
+	}
+
 	public Circle(Point p, int radius) {
 		this.center = p;
 		this.radius = radius;
