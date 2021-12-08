@@ -29,7 +29,8 @@ public class Users extends DAOImpl<User> {
 			PreparedStatement preparedStatement = this.conn.createPreparedStatement(sql);
 			preparedStatement.setString(1, user.getName());
 			preparedStatement.setString(2, user.getLastName());
-			return preparedStatement.execute();
+			preparedStatement.execute();
+			return true;
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
@@ -37,7 +38,18 @@ public class Users extends DAOImpl<User> {
 	}
 
 	@Override
-	public boolean update(int id, User e) {
+	public boolean update(int id, User user) {
+		String sql = String.format("UPDATE %s SET Name = ?, LastName=? Where Id = ?", tableName);
+		try {
+			PreparedStatement preparedStatement = this.conn.createPreparedStatement(sql);
+			preparedStatement.setString(1, user.getName());
+			preparedStatement.setString(2, user.getLastName());
+			preparedStatement.setInt(3, id);
+			preparedStatement.execute();
+			return true;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		return false;
 	}
 

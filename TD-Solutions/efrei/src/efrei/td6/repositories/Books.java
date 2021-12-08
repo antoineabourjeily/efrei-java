@@ -24,13 +24,13 @@ public class Books extends DAOImpl<Book> {
 	}
 
 	@Override
-	public boolean add(Book b) {
+	public boolean add(Book book) {
 		String sql = String.format("Insert into %s(title, author, synopsis) values(?,?,?)", tableName);
 		try {
 			PreparedStatement preparedStatement = this.conn.createPreparedStatement(sql);
-			preparedStatement.setString(1, b.getTitle());
-			preparedStatement.setString(2, b.getAuthor());
-			preparedStatement.setString(3, b.getSynopsis());
+			preparedStatement.setString(1, book.getTitle());
+			preparedStatement.setString(2, book.getAuthor());
+			preparedStatement.setString(3, book.getSynopsis());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e1) {
@@ -40,7 +40,19 @@ public class Books extends DAOImpl<Book> {
 	}
 
 	@Override
-	public boolean update(int id, Book e) {
+	public boolean update(int id, Book book) {
+		String sql = String.format("UPDATE %s SET Title=?, Author=?, Synopsis=?) Where Id = ?", tableName);
+		try {
+			PreparedStatement preparedStatement = this.conn.createPreparedStatement(sql);
+			preparedStatement.setString(1, book.getTitle());
+			preparedStatement.setString(2, book.getAuthor());
+			preparedStatement.setString(3, book.getSynopsis());
+			preparedStatement.setInt(4, id);
+			preparedStatement.execute();
+			return true;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		return false;
 	}
 

@@ -74,7 +74,10 @@ public class TD6 {
 //			System.out.println("User added successfully");
 //		}
 		
-		users.remove(5);
+//		users.remove(5);
+		User userToUpdate = users.getById(4);
+		userToUpdate.setLastName("ABCDEFG");
+		users.update(4, userToUpdate);
 	}
 
 }
