@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import efrei.td6.DbConnection;
-import efrei.td6.User;
 import efrei.td6.abstracts.DAOImpl;
+import efrei.td6.models.User;
 
 public class Users extends DAOImpl<User> {
 

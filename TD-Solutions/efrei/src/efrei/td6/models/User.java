@@ -1,4 +1,4 @@
-package efrei.td6;
+package efrei.td6.models;
 
 public class User {
 
