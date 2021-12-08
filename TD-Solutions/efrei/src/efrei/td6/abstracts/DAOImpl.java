@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import efrei.td6.DbConnection;
 
 public abstract class DAOImpl<TEntity> implements DAO<TEntity> {
-	private final DbConnection conn;
-	private final String tableName;
+	protected final DbConnection conn;
+	protected final String tableName;
 
 	public DAOImpl(DbConnection conn, String tableName) {
 		this.conn = conn;
@@ -17,11 +17,8 @@ public abstract class DAOImpl<TEntity> implements DAO<TEntity> {
 
 	protected abstract TEntity fromResultSet(ResultSet set) throws SQLException;
 
-	@Override
-	public void add(TEntity e) {
-		// TODO Auto-generated method stub
-
-	}
+	public abstract boolean add(TEntity e);
+	public abstract boolean update(int id, TEntity e);
 
 	@Override
 	public TEntity getById(int id) {
@@ -53,15 +50,8 @@ public abstract class DAOImpl<TEntity> implements DAO<TEntity> {
 	}
 
 	@Override
-	public void update(int id, TEntity e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void remove(int id) {
-		// TODO Auto-generated method stub
-
+	public boolean remove(int id) {
+		return false;
 	}
 
 }

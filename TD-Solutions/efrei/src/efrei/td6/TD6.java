@@ -68,6 +68,13 @@ public class TD6 {
 		} else {
 			System.out.println(book);
 		}
+
+//		printSeparator();
+//		
+//		User newUser = new User("Antoine", "AR");
+//		if(users.add(newUser)) {
+//			System.out.println("User added successfully");
+//		}
 	}
 
 }

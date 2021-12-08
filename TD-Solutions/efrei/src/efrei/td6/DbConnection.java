@@ -2,6 +2,7 @@ package efrei.td6;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,5 +29,11 @@ public class DbConnection {
 		Statement statement = this.conn.createStatement();
 		return statement.executeQuery(sql);
 	}
+	
+	public PreparedStatement createPreparedStatement(String sql) throws SQLException {
+		return this.conn.prepareStatement(sql);
+	}
+	
+	
 	
 }

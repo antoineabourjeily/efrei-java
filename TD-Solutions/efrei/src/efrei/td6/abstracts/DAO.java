@@ -11,9 +11,9 @@ public interface DAO<TEntity> {
 	 * DELETE (REMOVE)
 	 */
 	
-	void add(TEntity e);
+	boolean add(TEntity e);
 	TEntity getById(int id);
 	ArrayList<TEntity> list();
-	void update(int id, TEntity e);
-	void remove(int id);
+	boolean update(int id, TEntity e);
+	boolean remove(int id);
 }
