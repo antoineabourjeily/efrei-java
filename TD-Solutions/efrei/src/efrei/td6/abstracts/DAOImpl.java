@@ -1,5 +1,6 @@
 package efrei.td6.abstracts;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public abstract class DAOImpl<TEntity> implements DAO<TEntity> {
 	protected abstract TEntity fromResultSet(ResultSet set) throws SQLException;
 
 	public abstract boolean add(TEntity e);
+
 	public abstract boolean update(int id, TEntity e);
 
 	@Override
@@ -51,6 +53,15 @@ public abstract class DAOImpl<TEntity> implements DAO<TEntity> {
 
 	@Override
 	public boolean remove(int id) {
+		String sql = String.format("DELETE FROM %s WHERE Id=?;", tableName);
+		try {
+			PreparedStatement preparedStatement = conn.createPreparedStatement(sql);
+			preparedStatement.setInt(1, id);
+			preparedStatement.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

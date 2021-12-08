@@ -1,7 +1,5 @@
 package efrei.td6;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import efrei.td6.models.Book;
@@ -37,37 +35,37 @@ public class TD6 {
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-		System.out.println("Users");
+//		System.out.println("Users");
 		Users users = new Users(db);
-		for (User user : users.list()) {
-			System.out.println(user);
-		}
-		printSeparator();
-		System.out.println("Books");
-		Books books = new Books(db);
-		for (Book book : books.list()) {
-			System.out.println(book);
-		}
-		printSeparator();
-		int userId = scanIdFor("User");
-		User user = users.getById(userId);
-
-		if (user == null) {
-			System.out.printf("Non existing User with id %d\n", userId);
-		} else {
-			System.out.println(user);
-		}
-
-		printSeparator();
-
-		int bookId = scanIdFor("Book");
-		Book book = books.getById(bookId);
-
-		if (book == null) {
-			System.out.printf("Non existing Book with id %d\n", bookId);
-		} else {
-			System.out.println(book);
-		}
+//		for (User user : users.list()) {
+//			System.out.println(user);
+//		}
+//		printSeparator();
+//		System.out.println("Books");
+//		Books books = new Books(db);
+//		for (Book book : books.list()) {
+//			System.out.println(book);
+//		}
+//		printSeparator();
+//		int userId = scanIdFor("User");
+//		User user = users.getById(userId);
+//
+//		if (user == null) {
+//			System.out.printf("Non existing User with id %d\n", userId);
+//		} else {
+//			System.out.println(user);
+//		}
+//
+//		printSeparator();
+//
+//		int bookId = scanIdFor("Book");
+//		Book book = books.getById(bookId);
+//
+//		if (book == null) {
+//			System.out.printf("Non existing Book with id %d\n", bookId);
+//		} else {
+//			System.out.println(book);
+//		}
 
 //		printSeparator();
 //		
@@ -75,6 +73,8 @@ public class TD6 {
 //		if(users.add(newUser)) {
 //			System.out.println("User added successfully");
 //		}
+		
+		users.remove(5);
 	}
 
 }
