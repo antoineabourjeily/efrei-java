@@ -14,7 +14,7 @@ public abstract class DAOImpl<TEntity> implements DAO<TEntity> {
 		this.conn = conn;
 		this.tableName = tableName;
 	}
-	
+
 	protected abstract TEntity fromResultSet(ResultSet set) throws SQLException;
 
 	@Override
@@ -25,19 +25,27 @@ public abstract class DAOImpl<TEntity> implements DAO<TEntity> {
 
 	@Override
 	public TEntity getById(int id) {
-
+		try {
+			ResultSet resultset = conn.executeQuery(String.format("SELECT * FROM %s WHERE ID = %d", tableName, id));
+			if (resultset.next()) {
+				return fromResultSet(resultset);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public ArrayList<TEntity> list() {
-		ArrayList<TEntity> result = new ArrayList<>(); 
+		ArrayList<TEntity> result = new ArrayList<>();
 		try {
 			ResultSet resultset = conn.executeQuery(String.format("SELECT * FROM %s", tableName));
-			while(resultset.next()) {
+			while (resultset.next()) {
 				result.add(this.fromResultSet(resultset));
 			}
-		
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
