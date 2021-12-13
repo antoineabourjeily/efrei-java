@@ -1,7 +1,10 @@
 package efrei.td6;
 
+import java.util.Dictionary;
 import java.util.Scanner;
 
+import efrei.td6.abstracts.DAO;
+import efrei.td6.abstracts.DAOImpl;
 import efrei.td6.models.Book;
 import efrei.td6.models.User;
 import efrei.td6.repositories.Books;
@@ -36,7 +39,6 @@ public class TD6 {
 //			e.printStackTrace();
 //		}
 //		System.out.println("Users");
-		Users users = new Users(db);
 //		for (User user : users.list()) {
 //			System.out.println(user);
 //		}
@@ -75,9 +77,17 @@ public class TD6 {
 //		}
 		
 //		users.remove(5);
+		Users.setDbConnection(db);
+		Books.setDbConnection(db);
+		
+		Users users = Users.getInstance();
+		
+		
 		User userToUpdate = users.getById(4);
 		userToUpdate.setLastName("ABCDEFG");
 		users.update(4, userToUpdate);
+		
+		
 	}
 
 }

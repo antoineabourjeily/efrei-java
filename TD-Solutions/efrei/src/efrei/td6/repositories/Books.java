@@ -4,14 +4,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import efrei.td6.DbConnection;
 import efrei.td6.abstracts.DAOImpl;
 import efrei.td6.models.Book;
 
 public class Books extends DAOImpl<Book> {
-
-	public Books(DbConnection conn) {
-		super(conn, "Books");
+	
+	private static final Books instance = new Books();
+	
+	public static Books getInstance() {
+		return instance;
+	}
+	
+	
+	private Books() {
+		super("Books");
 	}
 
 	@Override
@@ -27,7 +33,7 @@ public class Books extends DAOImpl<Book> {
 	public boolean add(Book book) {
 		String sql = String.format("Insert into %s(title, author, synopsis) values(?,?,?)", tableName);
 		try {
-			PreparedStatement preparedStatement = this.conn.createPreparedStatement(sql);
+			PreparedStatement preparedStatement = this.DB_CONN.createPreparedStatement(sql);
 			preparedStatement.setString(1, book.getTitle());
 			preparedStatement.setString(2, book.getAuthor());
 			preparedStatement.setString(3, book.getSynopsis());
@@ -43,7 +49,7 @@ public class Books extends DAOImpl<Book> {
 	public boolean update(int id, Book book) {
 		String sql = String.format("UPDATE %s SET Title=?, Author=?, Synopsis=?) Where Id = ?", tableName);
 		try {
-			PreparedStatement preparedStatement = this.conn.createPreparedStatement(sql);
+			PreparedStatement preparedStatement = this.DB_CONN.createPreparedStatement(sql);
 			preparedStatement.setString(1, book.getTitle());
 			preparedStatement.setString(2, book.getAuthor());
 			preparedStatement.setString(3, book.getSynopsis());
@@ -55,5 +61,6 @@ public class Books extends DAOImpl<Book> {
 		}
 		return false;
 	}
+
 
 }
